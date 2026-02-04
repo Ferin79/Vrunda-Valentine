@@ -1,0 +1,146 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  min-height: 400px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+}
+
+h1 {
+  font-family: "Dancing Script", cursive;
+  color: #ff3366;
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.gif-container {
+  margin-bottom: 2rem;
+}
+
+.gif-container img {
+  width: 200px;
+  height: auto;
+  border-radius: 15px;
+  mix-blend-mode: multiply; /* Helps blend white backgrounds if gif has one */
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* We don't want absolute positioning context for the NO button to be relative to this small div if we want it to fly around the whole card, but let's keep it simple first. Actually, floating around the whole window is safer for 'moving away'. */
+}
+
+button {
+  padding: 12px 32px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.yes-btn {
+  background-color: #ff3366;
+  color: white;
+}
+
+.yes-btn:hover {
+  background-color: #ff0040;
+  transform: scale(1.05);
+}
+
+.no-btn {
+  background-color: #e0e0e0;
+  color: #333;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.no-btn:hover {
+  background-color: #d0d0d0;
+}
+
+/* Success Message Styles */
+.success-message {
+  font-family: "Dancing Script", cursive;
+  font-size: 4rem;
+  color: #ff3366;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 95%;
+    min-height: auto;
+    padding: 1.5rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .gif-container img {
+    width: 150px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+
+  button {
+    width: 100%;
+    max-width: 200px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+  }
+
+  .success-message {
+    font-size: 2.2rem;
+  }
+}

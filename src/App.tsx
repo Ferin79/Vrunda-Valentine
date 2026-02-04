@@ -10,14 +10,18 @@ function App() {
 
   const handleNoHover = () => {
     const noBtn = noBtnRef.current;
-    const noBtnRect = noBtn?.getBoundingClientRect();
+    if (!noBtn) return;
 
-    // Use actual button dimensions or fallback
-    const buttonWidth = noBtnRect?.width || 100;
-    const buttonHeight = noBtnRect?.height || 50;
-    const padding = 10;
+    const noBtnRect = noBtn.getBoundingClientRect();
 
-    // Calculate safe bounds
+    // Use actual button dimensions
+    const buttonWidth = noBtnRect.width;
+    const buttonHeight = noBtnRect.height;
+    const padding = 20;
+
+    // Calculate safe bounds (accounting for button size)
+    const minX = padding;
+    const minY = padding;
     const maxX = window.innerWidth - buttonWidth - padding;
     const maxY = window.innerHeight - buttonHeight - padding;
 
@@ -31,8 +35,8 @@ function App() {
 
     do {
       // Generate random position within safe bounds
-      x = padding + Math.random() * (maxX - padding);
-      y = padding + Math.random() * (maxY - padding);
+      x = minX + Math.random() * (maxX - minX);
+      y = minY + Math.random() * (maxY - minY);
       attempts++;
 
       // Check if position overlaps with Yes button (with extra margin)
@@ -50,9 +54,9 @@ function App() {
       }
     } while (attempts < maxAttempts);
 
-    // Ensure final position is clamped within viewport
-    x = Math.max(padding, Math.min(x, maxX));
-    y = Math.max(padding, Math.min(y, maxY));
+    // Final clamp to guarantee button stays in viewport
+    x = Math.max(minX, Math.min(x, maxX));
+    y = Math.max(minY, Math.min(y, maxY));
 
     setNoBtnStyle({
       position: "fixed",
